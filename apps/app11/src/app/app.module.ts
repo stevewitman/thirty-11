@@ -2,9 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
  
-import { AppComponent } from './app.component';
 import { MaterialModule } from '@nx11/material';
-
+import { RoutingModule } from './routing.module';
+import { UiLibModule } from '@nx11/ui-lib';
+import { AppComponent } from './app.component';
 @NgModule({
 	declarations: [
 		AppComponent
@@ -12,7 +13,9 @@ import { MaterialModule } from '@nx11/material';
 	imports: [
 		BrowserModule,
 		BrowserAnimationsModule,
-		MaterialModule
+		MaterialModule,
+		RoutingModule,
+		UiLibModule
 	],
   providers: [],
   bootstrap: [AppComponent]
