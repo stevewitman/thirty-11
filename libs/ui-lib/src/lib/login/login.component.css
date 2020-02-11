@@ -1,0 +1,12 @@
+.login-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+.full-width {
+  width: 100%;
+}
+.button-container {
+  padding: 25px 25px 0px 0px;
+}
