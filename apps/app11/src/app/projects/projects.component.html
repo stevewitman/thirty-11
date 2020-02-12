@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col">
+		<nx11-projects-list
+			[projects]="projects$ | async"
+      (selected)="selectProject($event)"
+      (deleted)="deleteProject($event)">
+    </nx11-projects-list>
+  </div>
+  <div class="col">
+		<nx11-project-detail
+			[project]="selectedProject$"
+      [form]="form"
+      (saved)="saveProject($event)"
+      (cancelled)="cancel()">
+    </nx11-project-detail>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="project-card" *ngIf="_project | async as project">
+  <mat-card>
+		<mat-card-header>
+			<mat-card-title >
+				<h2>Project: {{ project.title }}</h2>
+			</mat-card-title>
+		</mat-card-header>
+		<mat-card-content class="background-accent">
+			<h4 mat-line>Details: </h4><p mat-line>{{project.details}}</p>
+		</mat-card-content>
+		<div class="button-container" align="end">
+			<mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+				(click)="onClick()">Back</button>
+			</mat-card-actions>
+    </div>
+  </mat-card>
+</div>

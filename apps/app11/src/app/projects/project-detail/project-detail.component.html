@@ -1,0 +1,27 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      <span *ngIf="currentProject.id; else elseCreateNew">{{ originalTitle }}</span>
+			<ng-template #elseCreateNew>
+				<span>Create a New Project</span>
+			</ng-template>
+    </mat-card-title>
+  </mat-card-header>
+	<form [formGroup]="form" #formDirective="ngForm" (ngSubmit)="saveForm(formDirective)">
+    <mat-card-content>
+      <mat-form-field class="full-width">
+        <input matInput placeholder="Title" type="text" name="title" formControlName="title">
+				<mat-error *ngIf="form.get('title').hasError('required')">Title required</mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width">
+				<textarea matInput placeholder="Details" type="text" name="details" formControlName="details"></textarea>
+				<mat-error *ngIf="form.get('title').hasError('required')">Description required</mat-error>
+      </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions align="end">
+      <button type="button" mat-raised-button (click)="onClear()">Cancel</button>
+      <button type="submit" mat-raised-button color="primary"
+      [disabled]="form.invalid">{{ currentProject.id ? 'Update' : 'Create' }}</button>
+    </mat-card-actions>
+  </form>
+</mat-card>
