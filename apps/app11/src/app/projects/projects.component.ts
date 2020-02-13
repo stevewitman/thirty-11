@@ -14,7 +14,7 @@ export class ProjectsComponent implements OnInit {
   form: FormGroup;
   selectedProject$: Observable<Project> = this.projectsFacade.selectedProject$;
 
-  projects$: Observable<Project[]> = this.projectsFacade.allProjects$;
+  projects$: Observable<any> = this.projectsFacade.allProjects$;
 
   constructor(
 		private projectService: ProjectService,

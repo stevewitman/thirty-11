@@ -22,13 +22,11 @@ tempProjects
   }
 
   getProject(projectId: string) {
-		console.log('GET URL:', this.getUrlForId(projectId));
     return this.httpClient.get(this.getUrlForId(projectId));
   }
 
   getProjects() {
     this.tempProjects = this.httpClient.get(this.getUrl())
-    console.log('GET PROJECTS', this.tempProjects)
     return this.httpClient.get(this.getUrl());
   }
 
@@ -37,8 +35,6 @@ tempProjects
   }
 
   deleteProject(projectId: string) {
-		console.log('ID:', projectId)
-		console.log('DELETE URL:', this.getUrlForId(projectId));
     return this.httpClient.delete(this.getUrlForId(projectId));
   }
 
