@@ -8,7 +8,7 @@
   </div>
   <div class="col">
 		<nx11-project-detail
-			[project]="selectedProject$"
+			[project]="selectedProject$ | async"
       [form]="form"
       (saved)="saveProject($event)"
       (cancelled)="cancel()">

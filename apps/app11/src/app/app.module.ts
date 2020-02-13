@@ -11,7 +11,8 @@ import { AppComponent } from './app.component';
 import { ProjectsComponent } from './projects/projects.component';
 import { ProjectsListComponent } from './projects/projects-list/projects-list.component';
 import { ProjectDetailsComponent } from './projects/project-detail/project-detail.component';
-import { ProjectComponent } from './projects/project/project.component';
+import { ProjectComponent } from './projects/project/project.component';import { CoreStateModule } from '@nx11/core-state';
+
 @NgModule({
 	declarations: [
 		AppComponent,
@@ -27,7 +28,8 @@ import { ProjectComponent } from './projects/project/project.component';
 		MaterialModule,
 		ReactiveFormsModule,
 		RoutingModule,
-		UiLibModule
+    UiLibModule,
+    CoreStateModule
 	],
   providers: [],
   bootstrap: [AppComponent]

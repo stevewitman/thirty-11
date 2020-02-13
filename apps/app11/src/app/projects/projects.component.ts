@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Project, ProjectService } from '@nx11/core-data';
+import { ProjectsFacade } from '@nx11/core-state';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'nx11-projects',
@@ -10,40 +12,40 @@ import { Project, ProjectService } from '@nx11/core-data';
 })
 export class ProjectsComponent implements OnInit {
   form: FormGroup;
-  selectedProject$;
-  projects$;
+  selectedProject$: Observable<Project> = this.projectsFacade.selectedProject$;
+
+  projects$: Observable<Project[]> = this.projectsFacade.allProjects$;
 
   constructor(
 		private projectService: ProjectService,
-		private formBuilder: FormBuilder,
+    private formBuilder: FormBuilder,
+    private projectsFacade: ProjectsFacade,
     ) { }
 
   ngOnInit() {
-		this.getProjects();
+    this.projectsFacade.loadProjects();
     this.initForm();
 	}
-	
+
 	getProjects() {
 		this.projects$ = this.projectService.getProjects();
 	}
 
 	selectProject(project: Project) {
-		this.selectedProject$ = project;
+    this.projectsFacade.selectProject(project.id);
 		this.form.patchValue(project);
 	}
 
 	deleteProject(project: Project) {
-		this.projectService.deleteProject(project.id)
-		.subscribe(result => {
-			this.getProjects();
-		});
+    this.projectsFacade.deleteProject(project);
+
 	}
 
 	saveProject(project: Project) {
 		if (project.id) {
-			this.updateProject(project);
+      this.projectsFacade.updateProject(project);
 		} else {
-			this.createProject(project);
+      this.projectsFacade.createProject(project);
 		}
 	}
 
@@ -80,7 +82,7 @@ export class ProjectsComponent implements OnInit {
 
   private initForm() {
     this.form = this.formBuilder.group({
-      id: [null],	
+      id: [null],
       title: ['', Validators.compose([Validators.required])],
       details: ['', Validators.compose([Validators.required])]
     })
